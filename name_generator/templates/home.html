@@ -1,0 +1,48 @@
+<!-- name_generator/templates/home.html -->
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container mt-5">
+    <h2 class="text-center mb-4">Baby Name Generator</h2>
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <form method="post" class="shadow p-4 rounded">
+                {% csrf_token %}
+                <div class="mb-3">
+                    {{ form.father_name.label_tag }}
+                    {{ form.father_name }}
+                </div>
+                <div class="mb-3">
+                    {{ form.mother_name.label_tag }}
+                    {{ form.mother_name }}
+                </div>
+                <div class="mb-3">
+                    {{ form.siblings.label_tag }}
+                    {{ form.siblings }}
+                </div>
+                <div class="mb-3">
+                    {{ form.country.label_tag }}
+                    {{ form.country }}
+                </div>
+                <div class="mb-3">
+                    {{ form.language.label_tag }}
+                    {{ form.language }}
+                </div>
+                <div class="mb-3">
+                    {{ form.name_style.label_tag }}
+                    {{ form.name_style }}
+                </div>
+                <div class="mb-3">
+                    {{ form.religion.label_tag }}
+                    {{ form.religion }}
+                </div>
+                <div class="mb-3">
+                    {{ form.gender.label_tag }}
+                    {{ form.gender }}
+                </div>
+                <button type="submit" class="btn btn-primary w-100">Generate Names</button>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}

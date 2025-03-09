@@ -1,0 +1,40 @@
+<!-- name_generator/templates/result.html -->
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container mt-5">
+    <h2 class="text-center mb-4">Baby Name Suggestions</h2>
+    <div class="row justify-content-center">
+        <div class="col-md-8 shadow p-4 rounded">
+            <h4 class="mb-3">Inputs:</h4>
+            <ul class="list-group mb-4">
+                <li class="list-group-item"><strong>Father's Name:</strong> {{ father_name }}</li>
+                <li class="list-group-item"><strong>Mother's Name:</strong> {{ mother_name }}</li>
+                <li class="list-group-item"><strong>Siblings' Names:</strong> {{ siblings|default:"None" }}</li>
+                <li class="list-group-item"><strong>Country:</strong> {{ country }}</li>
+                <li class="list-group-item"><strong>Language:</strong> {{ language }}</li>
+                <li class="list-group-item"><strong>Preferred Style:</strong> {{ name_style }}</li>
+                <li class="list-group-item"><strong>Religion:</strong> {{ religion }}</li>
+                <li class="list-group-item"><strong>Baby's Gender:</strong> {{ gender }}</li>
+            </ul>
+
+            <h4 class="mb-3">Results:</h4>
+            {% if error %}
+                <div class="alert alert-danger">{{ error }}</div>
+            {% else %}
+                <ul class="list-group mb-4">
+                    {% for key, value in ai_names.items %}
+                        <li class="list-group-item">
+                            <strong>{{ value.name }}</strong><br>
+                            <small class="text-muted">{{ value.meaning }}</small><br>
+                            <small class="text-secondary">{{ value.details }}</small>
+                        </li>
+                    {% endfor %}
+                </ul>
+            {% endif %}
+
+            <a href="{% url 'home' %}" class="btn btn-secondary w-100">Try Again</a>
+        </div>
+    </div>
+</div>
+{% endblock %}
